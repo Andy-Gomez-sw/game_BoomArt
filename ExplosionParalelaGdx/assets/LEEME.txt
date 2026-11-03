@@ -1,0 +1,52 @@
+CÓMO CAMBIAR LAS IMÁGENES, LA MÚSICA Y LA FUENTE
+================================================
+Todo el arte del juego son archivos de esta carpeta. Para cambiar algo, REEMPLAZA el archivo por el tuyo con
+el MISMO NOMBRE y vuelve a ejecutar el juego. No hay que tocar el código.
+
+IMÁGENES  (assets/imagenes)  -- png, jpg o jpeg. Si hay jpg y png con el mismo nombre, gana el jpg.
+------------------------------------------------------------------------------------------------
+Fotos de los municipios (horizontales, ~1280x720 o más):
+    nivel1_fondo   Xonacatlán        nivel2_fondo   San Mateo Atenco
+    nivel3_fondo   Tianguistenco     nivel4_fondo   Metepec
+  -> Se ven completas en la pantalla de inicio de cada nivel y oscurecidas detrás del mapa. Pon el monumento hacia
+     el centro y arriba: el texto del nivel se escribe sobre la parte de abajo.
+  -> Ejemplo: guarda tu foto como  assets/imagenes/nivel4_fondo.jpg
+
+Casillas del mapa (cuadradas, 128x128 px):
+    nivel1_suelo, nivel1_muro_fijo, nivel1_muro_rompible   (y lo mismo con nivel2_, nivel3_, nivel4_)
+    suelo, muro_fijo, muro_rompible   (sin número: se usan en los niveles que no tengan la suya)
+    puerta, trampa
+
+Objetos y personajes (PNG con fondo transparente, ~128x128 px):
+    objeto_moneda  objeto_peluche  objeto_zapato  objeto_chaleco  objeto_jarrito
+    objeto_corazon  objeto_reloj  objeto_escudo  objeto_alcance   (los ítems de AYUDA)
+    escudo  (la burbuja que rodea al jugador cuando tiene el escudo, 256x256)
+    jarrito  (la bomba)   enemigo_vigilante   enemigo_rapido   fuego (llamas de la explosión)
+
+Avatar (los tres del mismo tamaño de lienzo: 240x336 px; la casilla ocupa la parte de abajo y arriba queda lugar
+para el sombrero). Son capas: el cuerpo se dibuja en BLANCO/GRIS y el juego lo tiñe con el color que elija el jugador.
+    avatar_cuerpo_redondo  avatar_cuerpo_cuadrado  avatar_cuerpo_hexagono   (cuerpo blanco)
+    avatar_cara
+    avatar_acc_sombrero_charro  avatar_acc_gorro_lana  avatar_acc_mono  avatar_acc_gorra  avatar_acc_corona
+
+Interfaz:
+    fondo_inicio, escenario, panel, panel_borde (marcos redondeados, se tiñen por código), circulo, matiz, flecha,
+    corazon, alerta, sombra, chispa, degradado, blanco
+
+SONIDOS  (assets/sonidos)  -- mp3, ogg o wav (si hay varios con el mismo nombre se usa mp3, luego ogg, luego wav)
+------------------------------------------------------------------------------------------------
+Música de cada nivel (se repite en bucle):
+    musica_nivel1  musica_nivel2  musica_nivel3  musica_nivel4
+Efectos (cortos):
+    colocar_bomba  explosion  moneda  objeto  ayuda  golpe  enemigo_eliminado  nivel_completo  victoria  derrota
+  -> Ejemplo: copia tu canción como  assets/sonidos/musica_nivel1.mp3
+  -> El volumen de la música está en core/.../audio/GdxSonido.java (VOLUMEN_MUSICA).
+
+FUENTE  (assets/fuentes)
+------------------------------------------------------------------------------------------------
+LilitaOne-Regular.ttf  (licencia OFL, ver OFL.txt). Puedes usar otra fuente TTF con ese mismo nombre de archivo;
+debe tener las letras con acento y la ñ.
+
+CONSEJOS
+  * Usa imágenes y música con licencia libre (Wikimedia Commons, Pixabay, Pexels, YouTube Audio Library) y anota el crédito.
+  * Para regenerar TODO lo que viene por defecto:  java tools/GeneradorAssets.java   (desde la carpeta del proyecto)

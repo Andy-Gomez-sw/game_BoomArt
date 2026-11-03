@@ -1,0 +1,32 @@
+// La carpeta "assets" (imágenes, sonidos, fuentes) se agrega al classpath del juego de escritorio.
+sourceSets.main.resources.srcDirs += [rootProject.file('assets').path]
+
+application {
+    mainClass = 'explosionparalela.lwjgl3.Lwjgl3Launcher'
+}
+
+eclipse.project.name = appName + '-lwjgl3'
+
+tasks.named('run') {
+    workingDir = rootProject.file('assets').path
+    ignoreExitValue = true
+    if (System.getProperty('os.name').toLowerCase().contains('mac')) {
+        jvmArgs '-XstartOnFirstThread'        // obligatorio en macOS para la ventana
+    }
+}
+
+// ./gradlew lwjgl3:dist  ->  genera lwjgl3/build/libs/ExplosionParalela-1.0.0.jar (un solo .jar que ejecuta el juego)
+tasks.named('jar') {
+    archiveFileName = "${appName}-${project.version}.jar"
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    dependsOn configurations.runtimeClasspath
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude('META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA')
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
+}
+
+tasks.register('dist') {
+    dependsOn 'jar'
+}
