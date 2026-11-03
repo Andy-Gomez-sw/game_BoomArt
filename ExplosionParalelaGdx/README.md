@@ -45,7 +45,7 @@ Al recogerlos sale un texto flotante ("+1 vida", "+30 s"...), suena un efecto y 
 Para ajustarlos: `Juego.java` (SEGUNDOS_RELOJ, MS_ESCUDO, MAX_ALCANCE_EXTRA), `Nivel.java` (cuáles van escondidos en cada nivel)
 y `HiloEventos.java` (PROBABILIDAD_AYUDA y qué tanto sale cada una).
 
-## Cómo está organizado (por si te lo piden en la revisión)
+## Cómo está organizado 
     core/src/main/java/explosionparalela/
       model/       datos del juego: Mapa, Jugador, Enemigo, Bomba, Avatar...        (sin libGDX)
       shared/      Inventario (recurso compartido, synchronized) y ControlPausa (monitor wait/notify)
